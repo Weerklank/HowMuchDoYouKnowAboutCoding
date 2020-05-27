@@ -5,7 +5,8 @@ var currentQuestion = {};
 var acceptingAnswers = true;
 var score = 0;
 var qNumber = 0;
-var availableQuestions = [
+var availableQuestions = []
+var questions = [
     {
         question: "If I wanted to create a variable that couldn't be changed, what would I call it?",
         choice1: "var",
@@ -15,7 +16,7 @@ var availableQuestions = [
         answer: 3
     },
     {
-        question: "How would I link the CSS sheet to my HTML file?",
+        question: "How would I link a CSS file called 'style.css' to my HTML file?",
         choice1: "<link rel='stylesheet' href='/style.css'>",
         choice2: "<a rel='stylesheet' link='/style.css'>",
         choice3: "<href rel='stylesheet' link='/style.css'>",
@@ -23,7 +24,7 @@ var availableQuestions = [
         answer: 1
     },
     {
-        question: "Would I need a .js file apply style to a website?",
+        question: "Would I need a .js file to apply style to a website?",
         choice1: "Yes",
         choice2: "No",
         choice3: "Yes, if you wanted it to change based on input.",
@@ -87,6 +88,31 @@ var availableQuestions = [
         answer: 2
     },
 ];
+
+var questionPoints = 10;
+var questionAmount = 3;
+
+function startGame() {
+  questionCounter = 0;
+  score = 0;
+  availableQuestions = [...questions];
+  getNewQuestion();
+};
+
+function getNewQuestion() {
+    questionCounter++;
+    var qIndex = Math.floor(Math.random() * availableQuestions.length)+1;
+    currentQuestion = availableQuestions[qIndex];
+    question.innerText = currentQuestion.question;
+    choices.forEach(replaceText)
+    function replaceText(choice) {
+        var number = choice.dataset['number']
+        choice.innerText = currentQuestion['choice' + number]
+    }
+}
+
+startGame()
+
 
 // Button Info
 
