@@ -1,3 +1,93 @@
+var question = document.getElementById('question');
+var choices = Array.from(document.getElementsByClassName('ans-text'));
+
+var currentQuestion = {};
+var acceptingAnswers = true;
+var score = 0;
+var qNumber = 0;
+var availableQuestions = [
+    {
+        question: "If I wanted to create a variable that couldn't be changed, what would I call it?",
+        choice1: "var",
+        choice2: "let",
+        choice3: "const",
+        choice4: "stay",
+        answer: 3
+    },
+    {
+        question: "How would I link the CSS sheet to my HTML file?",
+        choice1: "<link rel='stylesheet' href='/style.css'>",
+        choice2: "<a rel='stylesheet' link='/style.css'>",
+        choice3: "<href rel='stylesheet' link='/style.css'>",
+        choice4: "<style rel='stylesheet' href='/style.css'>",
+        answer: 1
+    },
+    {
+        question: "Would I need a .js file apply style to a website?",
+        choice1: "Yes",
+        choice2: "No",
+        choice3: "Yes, if you wanted it to change based on input.",
+        choice4: "No, if you wanted it to change based on input.",
+        answer: 3
+    },
+    {
+        question: "In the 1981 Blue Oyster Cult song 'Veteran of the Psychic Wars' what does the line 'I'm young enough to look at and far too old to see' mean?",
+        choice1: "I have no idea",
+        choice2: "I don't like Blue Oyster Cult",
+        choice3: "I've never heard that song before",
+        choice4: "Oh man I love Blue Osyter Cult!",
+        answer: 4 && 1
+    },
+    {
+        question: "What's the name of the popular website for hosting your own code?",
+        choice1: "Botstrap",
+        choice2: "Github",
+        choice3: "Virtual Studio Code",
+        choice4: "Overstack",
+        answer: 2
+    },
+    {
+        question: "Can you make a functioning website without CSS?",
+        choice1: "No, you need CSS to make a website functional.",
+        choice2: "Yes, but it will look horrible.",
+        choice3: "Yes, if you don't want any user interactivity.",
+        choice4: "Yes, but only for other web developers.",
+        answer: 2
+    },
+    {
+        question: "What is the base file that git automatically looks for and loads as the main page without prompting?",
+        choice1: "base.html",
+        choice2: "instance.html",
+        choice3: "index.html",
+        choice4: "home.html",
+        answer: 3
+    },
+    {
+        question: "How would I link the CSS sheet to my HTML file?",
+        choice1: "<link rel='stylesheet' href='/style.css'>",
+        choice2: "<a rel='stylesheet' link='/style.css'>",
+        choice3: "<href rel='stylesheet' link='/style.css'>",
+        choice4: "<style rel='stylesheet' href='/style.css'>",
+        answer: 1
+    },
+    {
+        question: "What code can tell if an event happens?",
+        choice1: "eventHappen",
+        choice2: "eventTrue",
+        choice3: "eventPlacement",
+        choice4: "eventListener",
+        answer: 4
+    },
+    {
+        question: "How do I change the color of text in CSS?",
+        choice1: "color",
+        choice2: "text-color",
+        choice3: "text",
+        choice4: "color-text",
+        answer: 2
+    },
+];
+
 // Button Info
 
 $('.button--bubble').each(function() {
