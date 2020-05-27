@@ -104,6 +104,15 @@ div {
     background-color: #90feb5;
     color: #fff;
 }
+/* seperate */
+
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* seperate */
 .button:active {
     transform: scale(0.95);
 }

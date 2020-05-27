@@ -1,5 +1,3 @@
-
-
 // Button Info
 
 $('.button--bubble').each(function() {
