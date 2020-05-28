@@ -2,7 +2,7 @@ var question = document.getElementById('question');
 var choices = Array.from(document.getElementsByClassName('ans-text'));
 
 var currentQuestion = {};
-var acceptingAnswers = true;
+var acceptingAnswers = false;
 var score = 0;
 var qNumber = 0;
 var availableQuestions = []
@@ -88,27 +88,66 @@ var questions = [
         answer: 2
     },
 ];
+console.log(questions)
+var timerEl = 100
 
 var questionPoints = 10;
 var questionAmount = 3;
 
 function startGame() {
-  questionCounter = 0;
-  score = 0;
-  availableQuestions = [...questions];
-  getNewQuestion();
+    timerEl = 100
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [...questions];
+    getNewQuestion();
 };
 
+
 function getNewQuestion() {
-    questionCounter++;
-    var qIndex = Math.floor(Math.random() * availableQuestions.length)+1;
-    currentQuestion = availableQuestions[qIndex];
-    question.innerText = currentQuestion.question;
-    choices.forEach(replaceText)
-    function replaceText(choice) {
-        var number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
+
+    if (availableQuestions.length === 0 || timerEl <= 0) {
+        console.log('Out of questions')
+        return window.location.assign("/end.html")
     }
+    else {
+        questionCounter++;
+        var qIndex = Math.floor(Math.random() * availableQuestions.length);
+        currentQuestion = availableQuestions[qIndex];
+        console.log(currentQuestion)
+        question.innerText = currentQuestion.question;
+        choices.forEach(replaceText)
+
+        function replaceText(choice) {
+
+            var number = choice.dataset['number']
+            choice.innerText = currentQuestion['choice' + number]
+
+        }
+
+        availableQuestions.splice(qIndex, 1)
+
+        acceptingAnswers = true
+        console.log(availableQuestions.length)
+    }
+}
+  
+choices.forEach(handleChoice)
+function handleChoice(choice) {
+    choice.addEventListener('click', function(e) {
+        if(!acceptingAnswers) return;
+        acceptingAnswers = false;
+        var tChoice = e.target;
+        console.log(e.target)
+        var tAnswer = parseInt(tChoice.dataset['number']);
+        if (tAnswer === currentQuestion.answer) {
+            console.log('nice')
+        }
+        else {
+            timer =- 10
+            return
+        }
+        getNewQuestion()
+    }) 
 }
 
 startGame()
